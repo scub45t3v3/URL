@@ -1,0 +1,16 @@
+{
+  "compile": {
+    "files": [
+      {
+        "expand": true,
+        "cwd": "src/",
+        "src": [
+          "**/*.coffee",
+          "!node_modules/**"
+        ],
+        "dest": ".",
+        "ext": ".js"
+      }
+    ]
+  }
+}

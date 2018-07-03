@@ -1,0 +1,47 @@
+{
+  "name": "@scuba-squad/url",
+  "description": "URL class definition",
+  "version": "0.0.0",
+  "public": true,
+  "main": "URL.js",
+  "license": "MIT",
+  "author": {
+    "name": "Steve Winberg",
+    "email": "stevewin21@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scub45t3v3/URL"
+  },
+  "keywords": [
+    "scuba-squad",
+    "url",
+    "uri",
+    "parse"
+  ],
+  "scripts": {
+    "pretest": "grunt",
+    "test": "nyc --reporter=html --reporter=text mocha test",
+    "lint": "grunt coffeelint",
+    "build": "grunt"
+  },
+  "engines": {
+    "node": ">= 6"
+  },
+  "devDependencies": {
+    "coffeelint": "^2.1.0",
+    "grunt": "^1.0.2",
+    "grunt-cli": "^1.2.0",
+    "grunt-coffeelint": "0.0.16",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-coffee": "^2.0.0",
+    "mocha": "^5.1.1",
+    "nyc": "^11.7.1",
+    "unit.js": "^2.0.0"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "punycode": "^2.1.1",
+    "underscore": "^1.9.0"
+  }
+}
