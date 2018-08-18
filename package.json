@@ -23,7 +23,8 @@
     "build": "grunt",
     "lint": "grunt eslint",
     "pretest": "grunt",
-    "test": "nyc --reporter=html --reporter=text mocha test"
+    "test": "nyc --reporter=html --reporter=text mocha test",
+    "posttest": "mocha --reporter=markdown > TEST.md"
   },
   "engines": {
     "node": ">= 6"
