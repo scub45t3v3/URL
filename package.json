@@ -20,21 +20,12 @@
     "parse"
   ],
   "scripts": {
-    "pretest": "grunt",
-    "test": "nyc --reporter=html --reporter=text mocha test",
-    "lint": "grunt coffeelint",
-    "build": "grunt"
+    "test": "nyc --reporter=html --reporter=text mocha test"
   },
   "engines": {
     "node": ">= 6"
   },
   "devDependencies": {
-    "coffeelint": "^2.1.0",
-    "grunt": "^1.0.2",
-    "grunt-cli": "^1.2.0",
-    "grunt-coffeelint": "0.0.16",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-coffee": "^2.0.0",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
     "unit.js": "^2.0.0"
