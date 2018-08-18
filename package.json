@@ -20,8 +20,9 @@
     "parse"
   ],
   "scripts": {
-    "lint": "eslint *.js test/*.js",
-    "pretest": "eslint *.js test/*.js",
+    "build": "grunt",
+    "lint": "grunt eslint",
+    "pretest": "grunt",
     "test": "nyc --reporter=html --reporter=text mocha test"
   },
   "engines": {
@@ -30,6 +31,8 @@
   "devDependencies": {
     "eslint": "^5.4.0",
     "eslint-config-scuba-squad": "^1.1.0",
+    "grunt": "^1.0.3",
+    "grunt-eslint": "^21.0.0",
     "mocha": "^5.1.1",
     "nyc": "^11.7.1",
     "unit.js": "^2.0.0"
