@@ -683,8 +683,22 @@ url.set({protocol: 'http', user: 'admin', host: 'host.com'});
 '' + url; // 'http://admin@host.com/path/to?q=1'
 ```
 
+#### `URL[Symbol.toStringTag]: string`
+**Added in:** v1.0.0
+
+**returns:** string
+
+```javascript
+const URL = require('@scuba-squad/url');
+
+let url = new URL();
+url[Symbol.toStringTag]; // '@scuba-squad/url'
+Object.prototype.toString.call(url); // '[object @scuba-squad/url]'
+```
+
 <a protocol="test"></a>
 ## Test
+[tests](TEST)
 ```bash
 npm install
 npm test
