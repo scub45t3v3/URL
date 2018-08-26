@@ -21,15 +21,17 @@
   ],
   "scripts": {
     "build": "grunt",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "grunt eslint",
     "pretest": "grunt",
-    "test": "nyc --reporter=html --reporter=text mocha test",
+    "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha test",
     "posttest": "mocha --reporter=markdown > TEST.md"
   },
   "engines": {
     "node": ">= 6"
   },
   "devDependencies": {
+    "coveralls": "^3.0.2",
     "eslint": "^5.4.0",
     "eslint-config-scuba-squad": "^1.1.0",
     "grunt": "^1.0.3",
