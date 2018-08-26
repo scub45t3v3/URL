@@ -698,7 +698,7 @@ Object.prototype.toString.call(url); // '[object @scuba-squad/url]'
 
 <a protocol="test"></a>
 ## Test
-[tests](TEST)
+[tests](TEST.md)
 ```bash
 npm install
 npm test
