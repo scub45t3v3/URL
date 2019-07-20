@@ -1,7 +1,7 @@
 {
   "name": "@scuba-squad/url",
   "description": "URL class definition",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "public": true,
   "main": "URL.js",
   "license": "MIT",
