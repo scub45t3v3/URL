@@ -25,23 +25,24 @@
     "lint": "grunt eslint",
     "pretest": "grunt",
     "test": "nyc --reporter=html --reporter=text --reporter=lcov mocha test",
-    "posttest": "mocha --reporter=markdown > TEST.md"
+    "posttest": "mocha --reporter=markdown > TEST.md",
+    "preversion": "npm test"
   },
   "engines": {
     "node": ">= 6"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.0.5",
     "eslint": "^5.5.0",
     "eslint-config-scuba-squad": "^1.1.1",
-    "grunt": "^1.0.3",
+    "grunt": "^1.0.4",
     "grunt-eslint": "^21.0.0",
-    "mocha": "^5.1.1",
-    "nyc": "^13.0.1",
-    "unit.js": "^2.0.0"
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "unit.js": "^2.1.0"
   },
   "dependencies": {
-    "debug": "^3.1.0",
+    "debug": "^4.1.1",
     "punycode": "^2.1.1",
     "underscore": "^1.9.0"
   }
