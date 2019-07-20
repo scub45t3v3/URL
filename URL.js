@@ -40,7 +40,6 @@
 
     const setProtocol = (value) => {
       debug('call:setProtocol(%o)', value);
-
       if (value != null && !this.PROTOCOL.test(value)) {
         debug('error:protocol = %o', value);
 
@@ -62,7 +61,6 @@
 
     const setUser = (value) => {
       debug('call:setUser(%o)', value);
-
       if (value != null && !this.USER.test(value)) {
         debug('error:user = %o', value);
 
@@ -84,7 +82,6 @@
 
     const setHost = (value) => {
       debug('call:setHost(%o)', value);
-
       try {
         value = value && punycode.toASCII(value);
       } catch (error) {
@@ -140,7 +137,6 @@
 
     const setPath = (value) => {
       debug('call:setPath(%o)', value);
-
       if (value != null && !this.PATH.test(value)) {
         debug('error:path = %o', value);
 
@@ -162,7 +158,6 @@
 
     const setQuery = (value) => {
       debug('call:setQuery(%o)', value);
-
       if (value != null && !this.QUERY.test(value)) {
         debug('error:query = %o', value);
 
@@ -184,7 +179,6 @@
 
     const setFragment = (value) => {
       debug('call:setFragment(%o)', value);
-
       if (value != null && !this.FRAGMENT.test(value)) {
         debug('error:fragment = %o', value);
 
@@ -246,7 +240,6 @@
 
     const getAuthority = () => {
       debug('call:getAuthority()');
-
       const str = `${this.getUser() || ''}@${this.getHost()}:${this.getPort() || ''}`;
 
       return this.getHost() && str.replace(/^@|:$/g, '');
@@ -254,7 +247,6 @@
 
     const setHref = (value) => {
       debug('call:setHref(%o)', value);
-
       value = URL.parse(value);
 
       if (!value) {
@@ -287,7 +279,6 @@
 
     const get = (...args) => {
       debug('call:get(%o)', args);
-
       args = _.flatten(args);
 
       return _.pick(this, ...args);
@@ -295,7 +286,6 @@
 
     const toString = () => {
       debug('call:toString()');
-
       if (!this.getProtocol() || !this.getAuthority()) {
         return '';
       }
