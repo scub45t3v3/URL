@@ -1,7 +1,4 @@
 {
   "src": ["*.js"],
-  "test": ["test/**/*.js"],
-  "options": {
-
-  }
+  "test": ["test/**/*.js"]
 }
