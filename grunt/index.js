@@ -1,3 +1,1 @@
-(() => {
-  exports.eslint = require('./eslint');
-})(); // end IIFE
+exports.eslint = require('./eslint');
