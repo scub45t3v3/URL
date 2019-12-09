@@ -29,14 +29,14 @@
     "preversion": "npm test"
   },
   "engines": {
-    "node": ">= 6"
+    "node": ">= 10"
   },
   "devDependencies": {
     "coveralls": "^3.0.5",
-    "eslint": "^5.5.0",
+    "eslint": "^6.7.0",
     "eslint-config-scuba-squad": "^1.1.1",
     "grunt": "^1.0.4",
-    "grunt-eslint": "^21.0.0",
+    "grunt-eslint": "^22.0.0",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
     "unit.js": "^2.1.0"
