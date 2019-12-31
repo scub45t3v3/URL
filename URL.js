@@ -20,11 +20,7 @@ const FRAGMENT = /^#?(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})+$/i;
 // URL class definition
 const URL = function(opt = {}) {
   debug('call:URL(%o)', opt);
-
-  // define auto instantiation
   if (!new.target) {
-    debug('re-call:URL with new operator');
-
     return new URL(opt);
   }
 
@@ -40,14 +36,10 @@ const URL = function(opt = {}) {
   const setProtocol = (value) => {
     debug('call:setProtocol(%o)', value);
     if (value != null && !this.PROTOCOL.test(value)) {
-      debug('error:protocol = %o', value);
-
       throw new TypeError('invalid protocol');
     }
 
-    debug('before:set:protocol = %o', protocol);
     protocol = (value && `${value}`.toLowerCase()) || undefined;
-    debug('after:set:protocol = %o', protocol);
 
     return this;
   }; // end setProtocol
@@ -61,14 +53,10 @@ const URL = function(opt = {}) {
   const setUser = (value) => {
     debug('call:setUser(%o)', value);
     if (value != null && !this.USER.test(value)) {
-      debug('error:user = %o', value);
-
       throw new TypeError('invalid user');
     }
 
-    debug('before:set:user = %o', user);
     user = (value && `${value}`) || undefined;
-    debug('after:set:user = %o', user);
 
     return this;
   }; // end setUser
@@ -84,22 +72,16 @@ const URL = function(opt = {}) {
     try {
       value = value && punycode.toASCII(value);
     } catch (error) {
-      debug('error:%o punycode.toASCII(%o)', error, value);
-
       throw new TypeError('invalid host');
     }
 
     value = value && `${value}`.replace(/^\[|\]$/g, '');
 
     if (value != null && !this.DOMAIN.test(value) && !net.isIP(value)) {
-      debug('error:host = %o', value);
-
       throw new TypeError('invalid host');
     }
 
-    debug('before:set:host = %o', host);
     host = (value && ((net.isIPv6(value) && `[${value}]`) || `${value}`)) || undefined;
-    debug('after:set:host = %o', host);
 
     return this;
   }; // end setHost
@@ -116,14 +98,10 @@ const URL = function(opt = {}) {
 
     if (value != null
       && (value < 1 || value > 65535 || !Number.isInteger(value))) {
-      debug('error:port = %o', value);
-
       throw new TypeError('invalid port');
     }
 
-    debug('before:set:port = %o', port);
     port = value || undefined;
-    debug('after:set:port = %o', port);
 
     return this;
   }; // end setPort
@@ -137,14 +115,10 @@ const URL = function(opt = {}) {
   const setPath = (value) => {
     debug('call:setPath(%o)', value);
     if (value != null && !this.PATH.test(value)) {
-      debug('error:path = %o', value);
-
       throw new TypeError('invalid path');
     }
 
-    debug('before:set:path = %o', path);
     path = (value && `${value}`.replace(/^\/+|\/+$/g, '')) || undefined;
-    debug('after:set:path = %o', path);
 
     return this;
   }; // end setPath
@@ -158,14 +132,10 @@ const URL = function(opt = {}) {
   const setQuery = (value) => {
     debug('call:setQuery(%o)', value);
     if (value != null && !this.QUERY.test(value)) {
-      debug('error:query = %o', value);
-
       throw new TypeError('invalid query');
     }
 
-    debug('bafore:set:query = %o', query);
     query = (value && `${value}`.replace(/^\?/, '')) || undefined;
-    debug('after:set:query = %o', query);
 
     return this;
   }; // end setQuery
@@ -179,14 +149,10 @@ const URL = function(opt = {}) {
   const setFragment = (value) => {
     debug('call:setFragment(%o)', value);
     if (value != null && !this.FRAGMENT.test(value)) {
-      debug('error:fragment = %o', value);
-
       throw new TypeError('invalid fragment');
     }
 
-    debug('before:set:fragment = %o', fragment);
     fragment = (value && `${value}`.replace(/^#/, '')) || undefined;
-    debug('after:set:fragment = %o', fragment);
 
     return this;
   }; // end setFragment
@@ -229,8 +195,6 @@ const URL = function(opt = {}) {
     }
 
     if (!_.intersection(_.allKeys(opt), keys).length) {
-      debug('error:authority = %o', opt);
-
       throw new TypeError('invalid authority');
     }
 
@@ -249,8 +213,6 @@ const URL = function(opt = {}) {
     value = URL.parse(value);
 
     if (!value) {
-      debug('error:href = %o', value);
-
       throw new TypeError('invalid href');
     }
 
