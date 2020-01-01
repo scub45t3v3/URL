@@ -8,8 +8,8 @@ const punycode = require('punycode');
 const {version} = require('./package');
 
 // setup validation regexs
-const REGEX = /^([a-z][a-z\d+.-]+):\/\/(?:((?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?([^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(\d+))?((?:\/(?:[\w!$&'()*+,;:@=~.-]|%[\da-f]{2})+)*)?\/?(?:\?((?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?(?:#((?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?$/i;
-const AUTHORITY = /^(?:((?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?([^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(\d+))?$/i;
+const REGEX = /^(?<protocol>[a-z][a-z\d+.-]+):\/\/(?:(?<user>(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?(?<host>[^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(?<port>\d+))?(?<path>(?:\/(?:[\w!$&'()*+,;:@=~.-]|%[\da-f]{2})+)*)?\/?(?:\?(?<query>(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?(?:#(?<fragment>(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?$/i;
+const AUTHORITY = /^(?:(?<user>(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?(?<host>[^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(?<port>\d+))?$/i;
 const PROTOCOL = /^[a-z][a-z\d+.-]+$/i;
 const USER = /^(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+$/i;
 const DOMAIN = /^(?:[a-z\d](?:[a-z\d-]*[a-z\d])?\.)+[a-z][a-z\d-]*[a-z\d]$/i;
@@ -165,6 +165,7 @@ const URL = function(opt = {}) {
 
   const setAuthority = (opt) => {
     debug('call:setAuthority(%o)', opt);
+    const parsed = AUTHORITY.exec(opt);
     const keys = [
       'user',
       'userinfo',
@@ -180,18 +181,9 @@ const URL = function(opt = {}) {
         host: undefined,
         port: undefined,
       };
-    }
-
-    if (opt && opt.match) {
-      const value = opt.match(AUTHORITY);
-
-      if (value && value.shift()) {
-        opt = {
-          user: value.shift(),
-          host: value.shift().replace(/^\[|\]$/g, ''),
-          port: value.shift(),
-        };
-      }
+    } else if (parsed && parsed.groups) {
+      opt = parsed.groups;
+      opt.host = opt.host.replace(/^\[|\]$/g, '');
     }
 
     if (!_.intersection(_.allKeys(opt), keys).length) {
@@ -486,24 +478,16 @@ const URL = function(opt = {}) {
 // static parse method
 URL.parse = (value = '') => {
   debug('call:parse(%o)', value);
-  value = (value && value.href) || value;
-  value = value && typeof value.match === 'function' && value.match(REGEX);
+  value = REGEX.exec((value && value.href) || value);
 
-  if (!value) {
+  if (!value || !value.groups) {
     return false;
   }
 
   const opt = {
+    ...value.groups,
     href: value.shift(),
-    protocol: value.shift(),
-    user: value.shift(),
-    host: value.shift(),
-    port: value.shift(),
-    path: value.shift(),
-    query: value.shift(),
-    fragment: value.shift(),
   };
-
   opt.path = opt.path && opt.path.replace(/^\/+|\/+$/g, '');
 
   return opt;
