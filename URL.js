@@ -8,14 +8,14 @@ const punycode = require('punycode');
 const {version} = require('./package');
 
 // setup validation regexs
-const REGEX = /^(?<protocol>[a-z][a-z\d+.-]+):\/\/(?:(?<user>(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?(?<host>[^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(?<port>\d+))?(?<path>(?:\/(?:[\w!$&'()*+,;:@=~.-]|%[\da-f]{2})+)*)?\/?(?:\?(?<query>(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?(?:#(?<fragment>(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?$/i;
-const AUTHORITY = /^(?:(?<user>(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?(?<host>[^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(?<port>\d+))?$/i;
-const PROTOCOL = /^[a-z][a-z\d+.-]+$/i;
-const USER = /^(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+$/i;
-const DOMAIN = /^(?:[a-z\d](?:[a-z\d-]*[a-z\d])?\.)+[a-z][a-z\d-]*[a-z\d]$/i;
-const PATH = /^\/?(?:(?:[\w!$&'()*+,;:@=~.-]|%[\da-f]{2})+\/?)*$/i;
-const QUERY = /^\??(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})+$/i;
-const FRAGMENT = /^#?(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})+$/i;
+const REGEX = /^(?<protocol>[a-z][a-z\d+.-]+):\/\/(?:(?<user>(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?(?<host>[^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(?<port>\d+))?(?<path>(?:\/(?:[\w!$&'()*+,;:@=~.-]|%[\da-f]{2})+)*)?\/?(?:\?(?<query>(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?(?:#(?<fragment>(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})*))?$/iu;
+const AUTHORITY = /^(?:(?<user>(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+)@)?(?<host>[^\s:[\]/%?#@]+|\[[:.%\w]+\])(?::(?<port>\d+))?$/iu;
+const PROTOCOL = /^[a-z][a-z\d+.-]+$/iu;
+const USER = /^(?:[\w!$&'()*+,;:=~.-]|%[\da-f]{2})+$/iu;
+const DOMAIN = /^(?:[a-z\d](?:[a-z\d-]*[a-z\d])?\.)+[a-z][a-z\d-]*[a-z\d]$/iu;
+const PATH = /^\/?(?:(?:[\w!$&'()*+,;:@=~.-]|%[\da-f]{2})+\/?)*$/iu;
+const QUERY = /^\??(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})+$/iu;
+const FRAGMENT = /^#?(?:[\w!$&'()*+,;:@=~?/.-]|%[\da-f]{2})+$/iu;
 
 // URL class definition
 const URL = function(opt = {}) {
@@ -75,7 +75,7 @@ const URL = function(opt = {}) {
       throw new TypeError('invalid host');
     }
 
-    value = value && `${value}`.replace(/^\[|\]$/g, '');
+    value = value && `${value}`.replace(/^\[|\]$/gu, '');
 
     if (value != null && !this.DOMAIN.test(value) && !net.isIP(value)) {
       throw new TypeError('invalid host');
@@ -118,7 +118,7 @@ const URL = function(opt = {}) {
       throw new TypeError('invalid path');
     }
 
-    path = (value && `${value}`.replace(/^\/+|\/+$/g, '')) || undefined;
+    path = (value && `${value}`.replace(/^\/+|\/+$/gu, '')) || undefined;
 
     return this;
   }; // end setPath
@@ -135,7 +135,7 @@ const URL = function(opt = {}) {
       throw new TypeError('invalid query');
     }
 
-    query = (value && `${value}`.replace(/^\?/, '')) || undefined;
+    query = (value && `${value}`.replace(/^\?/u, '')) || undefined;
 
     return this;
   }; // end setQuery
@@ -152,7 +152,7 @@ const URL = function(opt = {}) {
       throw new TypeError('invalid fragment');
     }
 
-    fragment = (value && `${value}`.replace(/^#/, '')) || undefined;
+    fragment = (value && `${value}`.replace(/^#/u, '')) || undefined;
 
     return this;
   }; // end setFragment
@@ -183,7 +183,7 @@ const URL = function(opt = {}) {
       };
     } else if (parsed && parsed.groups) {
       opt = parsed.groups;
-      opt.host = opt.host.replace(/^\[|\]$/g, '');
+      opt.host = opt.host.replace(/^\[|\]$/gu, '');
     }
 
     if (!_.intersection(_.allKeys(opt), keys).length) {
@@ -197,7 +197,7 @@ const URL = function(opt = {}) {
     debug('call:getAuthority()');
     const str = `${this.getUser() || ''}@${this.getHost()}:${this.getPort() || ''}`;
 
-    return this.getHost() && str.replace(/^@|:$/g, '');
+    return this.getHost() && str.replace(/^@|:$/gu, '');
   }; // end getAuthority
 
   const setHref = (value) => {
@@ -488,7 +488,7 @@ URL.parse = (value = '') => {
     ...value.groups,
     href: value.shift(),
   };
-  opt.path = opt.path && opt.path.replace(/^\/+|\/+$/g, '');
+  opt.path = opt.path && opt.path.replace(/^\/+|\/+$/gu, '');
 
   return opt;
 }; // end URL.parse

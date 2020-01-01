@@ -187,7 +187,7 @@ unit
   .isFalse()
   .bool(URL.parse('/this/is/a/path'))
   .isFalse()
-  .bool(URL.parse(/asd/i))
+  .bool(URL.parse(/asd/iu))
   .isFalse()
   .bool(URL.parse([1, 2, 3]))
   .isFalse()
@@ -339,7 +339,7 @@ should throw an error for an object that stringifies to an invalid protocol.
 const test = new URL();
 unit
   .error(() => {
-    test.protocol = /asd/;
+    test.protocol = /asd/u;
   })
   .error(() => {
     test.protocol = [1, 2, 3];
@@ -450,7 +450,7 @@ should throw an error for an object that stringifies to an invalid user.
 const test = new URL();
 unit
   .error(() => {
-    test.user = /asd/;
+    test.user = /asd/u;
   })
   .error(() => {
     test.user = new Date();
@@ -587,7 +587,7 @@ should throw an error for an object that stringifies to an invalid host.
 const test = new URL();
 unit
   .error(() => {
-    test.host = /asd/;
+    test.host = /asd/u;
   })
   .error(() => {
     test.host = new Date();
@@ -724,7 +724,7 @@ should throw an error for an object that stringifies to an invalid port.
 const test = new URL();
 unit
   .error(() => {
-    test.port = /asd/;
+    test.port = /asd/u;
   })
   .error(() => {
     test.port = new Date();

@@ -156,7 +156,7 @@ describe('URL', () => {
         .isFalse()
         .bool(URL.parse('/this/is/a/path'))
         .isFalse()
-        .bool(URL.parse(/asd/i))
+        .bool(URL.parse(/asd/iu))
         .isFalse()
         .bool(URL.parse([1, 2, 3]))
         .isFalse()
@@ -296,7 +296,7 @@ describe('URL', () => {
 
       unit
         .error(() => {
-          test.protocol = /asd/;
+          test.protocol = /asd/u;
         })
         .error(() => {
           test.protocol = [1, 2, 3];
@@ -401,7 +401,7 @@ describe('URL', () => {
 
       unit
         .error(() => {
-          test.user = /asd/;
+          test.user = /asd/u;
         })
         .error(() => {
           test.user = new Date();
@@ -530,7 +530,7 @@ describe('URL', () => {
 
       unit
         .error(() => {
-          test.host = /asd/;
+          test.host = /asd/u;
         })
         .error(() => {
           test.host = new Date();
@@ -659,7 +659,7 @@ describe('URL', () => {
 
       unit
         .error(() => {
-          test.port = /asd/;
+          test.port = /asd/u;
         })
         .error(() => {
           test.port = new Date();
