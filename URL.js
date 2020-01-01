@@ -263,206 +263,206 @@ const URL = function(opt = {}) {
   Object.defineProperties(this, {
     VERSION: {
       enumerable: false,
-      writable: false,
       value: version,
+      writable: false,
     },
     PROTOCOL: {
       enumerable: false,
-      writable: false,
       value: PROTOCOL,
+      writable: false,
     },
     USER: {
       enumerable: false,
-      writable: false,
       value: USER,
+      writable: false,
     },
     DOMAIN: {
       enumerable: false,
-      writable: false,
       value: DOMAIN,
+      writable: false,
     },
     PATH: {
       enumerable: false,
-      writable: false,
       value: PATH,
+      writable: false,
     },
     QUERY: {
       enumerable: false,
-      writable: false,
       value: QUERY,
+      writable: false,
     },
     FRAGMENT: {
       enumerable: false,
-      writable: false,
       value: FRAGMENT,
+      writable: false,
     },
     protocol: {
       enumerable: true,
-      set: setProtocol,
       get: getProtocol,
+      set: setProtocol,
     },
     schema: {
       enumerable: false,
-      set: setProtocol,
       get: getProtocol,
+      set: setProtocol,
     },
     user: {
       enumerable: true,
-      set: setUser,
       get: getUser,
+      set: setUser,
     },
     userinfo: {
       enumerable: false,
-      set: setUser,
       get: getUser,
+      set: setUser,
     },
     host: {
       enumerable: true,
-      set: setHost,
       get: getHost,
+      set: setHost,
     },
     domain: {
       enumerable: false,
-      set: setHost,
       get: getHost,
+      set: setHost,
     },
     hostname: {
       enumerable: false,
-      set: setHost,
       get: getHost,
+      set: setHost,
     },
     port: {
       enumerable: true,
-      set: setPort,
       get: getPort,
+      set: setPort,
     },
     authority: {
       enumerable: false,
-      set: setAuthority,
       get: getAuthority,
+      set: setAuthority,
     },
     path: {
       enumerable: true,
-      set: setPath,
       get: getPath,
+      set: setPath,
     },
     pathname: {
       enumerable: false,
-      set: setPath,
       get: getPath,
+      set: setPath,
     },
     query: {
       enumerable: true,
-      set: setQuery,
       get: getQuery,
+      set: setQuery,
     },
     querystring: {
       enumerable: false,
-      set: setQuery,
       get: getQuery,
+      set: setQuery,
     },
     fragment: {
       enumerable: true,
-      set: setFragment,
       get: getFragment,
+      set: setFragment,
     },
     hash: {
       enumerable: false,
-      set: setFragment,
       get: getFragment,
+      set: setFragment,
     },
     href: {
       enumerable: false,
-      set: setHref,
       get: getHref,
-    },
-    setProtocol: {
-      writable: false,
-      value: setProtocol,
+      set: setHref,
     },
     getProtocol: {
-      writable: false,
       value: getProtocol,
-    },
-    setUser: {
       writable: false,
-      value: setUser,
+    },
+    setProtocol: {
+      value: setProtocol,
+      writable: false,
     },
     getUser: {
-      writable: false,
       value: getUser,
-    },
-    setHost: {
       writable: false,
-      value: setHost,
+    },
+    setUser: {
+      value: setUser,
+      writable: false,
     },
     getHost: {
-      writable: false,
       value: getHost,
-    },
-    setPort: {
       writable: false,
-      value: setPort,
+    },
+    setHost: {
+      value: setHost,
+      writable: false,
     },
     getPort: {
-      writable: false,
       value: getPort,
-    },
-    setPath: {
       writable: false,
-      value: setPath,
+    },
+    setPort: {
+      value: setPort,
+      writable: false,
     },
     getPath: {
-      writable: false,
       value: getPath,
-    },
-    setQuery: {
       writable: false,
-      value: setQuery,
+    },
+    setPath: {
+      value: setPath,
+      writable: false,
     },
     getQuery: {
-      writable: false,
       value: getQuery,
-    },
-    setFragment: {
       writable: false,
-      value: setFragment,
+    },
+    setQuery: {
+      value: setQuery,
+      writable: false,
     },
     getFragment: {
-      writable: false,
       value: getFragment,
-    },
-    setAuthority: {
       writable: false,
-      value: setAuthority,
+    },
+    setFragment: {
+      value: setFragment,
+      writable: false,
     },
     getAuthority: {
-      writable: false,
       value: getAuthority,
-    },
-    setHref: {
       writable: false,
-      value: setHref,
+    },
+    setAuthority: {
+      value: setAuthority,
+      writable: false,
     },
     getHref: {
-      writable: false,
       value: getHref,
-    },
-    set: {
       writable: false,
-      value: set,
+    },
+    setHref: {
+      value: setHref,
+      writable: false,
     },
     get: {
-      writable: false,
       value: get,
+      writable: false,
+    },
+    set: {
+      value: set,
+      writable: false,
     },
     toString: {
-      writable: false,
       value: toString,
+      writable: false,
     },
     [Symbol.toStringTag]: {
-      writable: false,
       value: '@scuba-squad/url',
+      writable: false,
     },
   });
 
