@@ -152,6 +152,8 @@ describe('URL', () => {
 
     it('should return false for invalid url strings', () => {
       unit
+        .bool(URL.parse())
+        .isFalse()
         .bool(URL.parse('this is not a url'))
         .isFalse()
         .bool(URL.parse('/this/is/a/path'))
