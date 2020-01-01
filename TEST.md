@@ -220,6 +220,8 @@ should accept an object with defined properties.
 
 ```js
 unit
+  .string(URL.stringify())
+  .is('')
   .string(URL.stringify({
     protocol: 'ftp',
     host: 'loopback.io',
@@ -233,6 +235,40 @@ unit
     port: 22,
   }))
   .is('ssh://john@192.168.0.16:22');
+```
+
+should throw an error for invalid properties.
+
+```js
+unit
+  .error(() => {
+    URL.stringify({a: 5});
+  })
+  .error(() => {
+    URL.stringify({
+      a: 5,
+      protocol: 'ftp',
+      host: 'loopback.io',
+      port: 86,
+    });
+  })
+  .error(() => {
+    URL.stringify({
+      protocol: 'ssh',
+      user: 'john',
+      host: '192.168.0.16',
+      port: 22,
+      none: true,
+    });
+  })
+  .error(() => {
+    URL.stringify({
+      protcol: 'ssh',
+      user: 'john',
+      host: '192.168.0.16',
+      port: 22,
+    });
+  });
 ```
 
 <a name="url-protocol"></a>

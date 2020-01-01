@@ -184,6 +184,8 @@ describe('URL', () => {
 
     it('should accept an object with defined properties', () => {
       unit
+        .string(URL.stringify())
+        .is('')
         .string(URL.stringify({
           protocol: 'ftp',
           host: 'loopback.io',
@@ -197,6 +199,38 @@ describe('URL', () => {
           port: 22,
         }))
         .is('ssh://john@192.168.0.16:22');
+    }); // end it
+
+    it('should throw an error for invalid properties', () => {
+      unit
+        .error(() => {
+          URL.stringify({a: 5});
+        })
+        .error(() => {
+          URL.stringify({
+            a: 5,
+            protocol: 'ftp',
+            host: 'loopback.io',
+            port: 86,
+          });
+        })
+        .error(() => {
+          URL.stringify({
+            protocol: 'ssh',
+            user: 'john',
+            host: '192.168.0.16',
+            port: 22,
+            none: true,
+          });
+        })
+        .error(() => {
+          URL.stringify({
+            protcol: 'ssh',
+            user: 'john',
+            host: '192.168.0.16',
+            port: 22,
+          });
+        });
     }); // end it
   }); // end describe #stringify
 
