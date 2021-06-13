@@ -1,0 +1,71 @@
+interface IURL {
+  protocol?: string;
+  schema?: string;
+  user?: string;
+  userinfo?: string;
+  host?: string;
+  domain?: string;
+  hostname?: string;
+  port?: string | number;
+  authority?: string;
+  path?: string;
+  pathname?: string;
+  query?: string;
+  querystring?: string;
+  fragement?: string;
+  hash?: string;
+  href?: string;
+}
+
+declare class URL implements IURL {
+  static VERSION: string;
+  static PROTOCOL: RegExp;
+  static USER: RegExp;
+  static DOMAIN: RegExp;
+  static PATH: RegExp;
+  static QUERY: RegExp;
+  static FRAGMENT: RegExp;
+  protocol?: string;
+  schema?: string;
+  user?: string;
+  userinfo?: string;
+  host?: string;
+  domain?: string;
+  hostname?: string;
+  port?: string | number;
+  authority?: string;
+  path?: string;
+  pathname?: string;
+  query?: string;
+  querystring?: string;
+  fragement?: string;
+  hash?: string;
+  href?: string;
+  constructor(opt?: IURL);
+  getProtocol(): string | undefined;
+  getUser(): string | undefined;
+  getHost(): string | undefined;
+  getPort(): number | undefined;
+  getPath(): string | undefined;
+  getQuery(): string | undefined;
+  getFragment(): string | undefined;
+  getAuthority(): string | undefined;
+  getHref(): string;
+  setProtocol(value?: any): URL;
+  setUser(value?: any): URL;
+  setHost(value?: any): URL;
+  setPort(value?: any): URL;
+  setPath(value?: any): URL;
+  setQuery(value?: any): URL;
+  setFragment(value?: any): URL;
+  setAuthority(value?: any): URL;
+  setHref(value?: any): URL;
+  set(opt: IURL): URL;
+  get(...value: any): Record<string, any>;
+  toString(): string;
+  [Symbol.toStringTag]: string;
+  static parse(value?: string): IURL | false;
+  static stringify(value?: IURL): string;
+}
+
+export default URL;

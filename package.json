@@ -4,6 +4,7 @@
   "version": "2.0.7",
   "public": true,
   "main": "URL.js",
+  "types": "URL.d.ts",
   "license": "MIT",
   "author": {
     "name": "Steve Winberg",
