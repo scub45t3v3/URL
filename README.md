@@ -2,7 +2,7 @@
 
 <a protocol="status"></a>
 ## Status
-[![Build Status](https://travis-ci.org/scub45t3v3/URL.svg?branch=master)](https://travis-ci.org/scub45t3v3/URL)
+[![Build Status](https://github.com/scub45t3v3/url/workflows/CI/badge.svg?event=push)](https://github.com/scub45t3v3/url/actions)
 [![Coverage Status](https://coveralls.io/repos/github/scub45t3v3/URL/badge.svg)](https://coveralls.io/github/scub45t3v3/URL)
 
 <a protocol="toc"></a>
